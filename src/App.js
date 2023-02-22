@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import Home from "./components/Home";
+import { red } from '@mui/material/colors';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { Route, Router, Routes } from "react-router-dom";
+import ProductDetials from "./components/ProductDetials";
+
+
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: red[500],
+    },
+  },
+});
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/productDetails/:id" element={<ProductDetials />} />
+      </Routes>
+    </ThemeProvider>
   );
 }
 
