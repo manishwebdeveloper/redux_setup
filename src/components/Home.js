@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import { Cart_Data, Services_show } from '../redux/actions/actions'
 import AppBarNav from './AppBar'
 import BottomBar from './BottomBar'
+import CategorySlider from './CategorySlider'
 import HeroSlider from './HeroSlider'
 import Products from './Products'
 import SearchBar from './SearchBar'
@@ -22,8 +23,9 @@ function Home() {
                 {/* <SearchBar /> */}
                 <AppBarNav />
                 <HeroSlider />
+                <CategorySlider />
                 <Products />
-                <BottomBar />
+
             </div>
         </>
     )

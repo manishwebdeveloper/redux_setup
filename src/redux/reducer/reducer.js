@@ -39,6 +39,9 @@ export const CartData = (state = { cartData: [] }, { type, payload }) => {
 // dispatch({ type: Action_type.PRODUCTDETIALS_REQ })
 export const ProductDetials = (state = { productData: [] }, { type, payload }) => {
     switch (type) {
+        case Action_type.PRODUCTDETIALS_REMOVE:
+            return { ...state, loading: true, productData: [] }
+            break;
         case Action_type.PRODUCTDETIALS_REQ:
             return { ...state, loading: true }
             break;

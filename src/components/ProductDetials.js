@@ -5,15 +5,24 @@ import React, { useEffect } from 'react'
 import IncrementDecrementBox from './IncrementDecrementBox';
 import Button from './ButtonCustom';
 import ButtonCustom from './ButtonCustom';
-import { Product_detials } from '../redux/actions/actions';
+import { Product_detials, Product_detials_remove } from '../redux/actions/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import Product_detials_up_bar from './Product_detials_up_bar';
+import CategorySlider from './CategorySlider';
 
-function ProductDetials() {
+function ProductDetials({ setLoaderValue }) {
     const dispatch = useDispatch()
     const { id } = useParams()
     useEffect(() => {
         dispatch(Product_detials(id))
+        setLoaderValue(50)
+        setTimeout(() => {
+            setLoaderValue(100)
+        }, 1000)
+
+        return dispatch(Product_detials_remove())
+
     }, [])
 
     const productDetial = useSelector((state) => state.ProductDetials.productData)
@@ -22,11 +31,13 @@ function ProductDetials() {
 
         <Box sx={{ width: "calc(100% - 1rem)", margin: "1rem auto 4rem auto" }}>
             {/* --upper bar--- */}
-            <Box></Box>
+            <Box sx={{ width: "100%", margin: "1rem 0" }}>
+                <Product_detials_up_bar />
+            </Box>
 
             {/* --img bar--- */}
             <Box>
-                <img src={productDetial.image} alt="" style={{ width: "100%", borderRadius: "10px", boxShadow: "0px 0px 10px lightgray" }} />
+                <img src={productDetial.image} alt="" style={{ width: "100%", aspectRatio: "16 / 12", objectFit: "contain", borderRadius: "10px", boxShadow: "0px 0px 10px rgba(0,0,0,0.1)" }} />
             </Box>
 
             {/* --upper bar--- */}
@@ -37,16 +48,7 @@ function ProductDetials() {
                 </Stack>
 
                 {/* --catagorsy-- */}
-                <Box sx={{ width: "100%", overflow: "auto", margin: "1rem 0" }}>
-                    <Stack direction="row" justifyContent="space-around" sx={{ width: "100%" }} gap={1}>
-                        <Typography variant='subtitle' sx={{ borderRadius: "54px", border: "1px solid lightgray", padding: "5px 20px" }}>Name</Typography>
-                        <Typography variant='subtitle' sx={{ borderRadius: "54px", border: "1px solid lightgray", padding: "5px 20px" }}>Name</Typography>
-                        <Typography variant='subtitle' sx={{ borderRadius: "54px", border: "1px solid lightgray", padding: "5px 20px" }}>Name</Typography>
-                        <Typography variant='subtitle' sx={{ borderRadius: "54px", border: "1px solid lightgray", padding: "5px 20px" }}>Name</Typography>
-                        <Typography variant='subtitle' sx={{ borderRadius: "54px", border: "1px solid lightgray", padding: "5px 20px" }}>Name</Typography>
-                        <Typography variant='subtitle' sx={{ borderRadius: "54px", border: "1px solid lightgray", padding: "5px 20px" }}>Name</Typography>
-                    </Stack>
-                </Box>
+                <CategorySlider />
 
                 {/* --catagorsy-- */}
                 <Stack direction="row" justifyContent="space-between" sx={{ width: "100%" }}>

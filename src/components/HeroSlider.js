@@ -9,7 +9,7 @@ import img3 from '../images/img3.jpg'
 function HeroSlider() {
     return (
         <Box sx={{ width: "calc(100% - 1rem)", boxShadow: "0px 0px 10px lightgray", margin: "auto", borderRadius: "10px" }} className="hero_slider">
-            <Swiper className="mySwiper">
+            <Swiper className="mySwiper" >
                 <SwiperSlide>
                     <Box component="div" sx={{ width: "100%", overflow: "hidden", borderRadius: "10px" }}>
                         <img src={img1} alt="" style={{ width: "100%", aspectRatio: "16 / 9" }} />
